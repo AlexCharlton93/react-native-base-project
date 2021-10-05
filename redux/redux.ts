@@ -17,7 +17,9 @@ if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
 }
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const composeEnhancers =
+  (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
 export const store = createStore(
     persistedReducer,
     composeEnhancers(applyMiddleware(...middleware))
